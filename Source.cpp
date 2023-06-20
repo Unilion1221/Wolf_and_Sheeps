@@ -19,6 +19,9 @@ private:
 	float posX;
 	float posY;
 public:
+
+
+
 	void createBoard() {
 		this->initTiles();
 		this->posX = 125.f;
@@ -42,6 +45,7 @@ public:
 		}
 	}
 
+
 	Board() {
 		this->createBoard();
 	}
@@ -58,6 +62,7 @@ public:
 		this->tile.setOutlineColor(sf::Color(205, 127, 50, 255));
 		this->tile.setOutlineThickness(1.f);
 	}
+
 
 	//test setting tile position
 	void setTilePos(float posRow, float posCol) {
@@ -83,6 +88,46 @@ public:
 
 };
 
+
+
+class Pawn {
+private:
+
+	//need getter for wolf pawn positions from board class
+	//set position fucntion and print functuon
+	//create wolf and sheep subclass
+	sf::CircleShape pawn;
+	Board board;
+public:
+	
+
+	void initPawn() 
+	{
+		this->pawn.setRadius(50);
+		this->pawn.setOutlineColor(sf::Color(0, 0, 0, 255));
+		this->pawn.setOutlineThickness(-3);
+		this->pawn.setPosition(125, 125.f);
+	}
+
+	Pawn() {
+		this->initPawn();
+	}
+
+
+
+
+	//Test render func
+	void printPawn(sf::RenderWindow* win) {
+		
+		win->draw(this->pawn);
+
+	}
+
+};
+
+
+
+
 //////////////
 
 //Game Class
@@ -95,6 +140,7 @@ private:
 
 	//Objects of the game
 	Board board;
+	Pawn pawn;
 
 	//Functions
 
@@ -136,6 +182,8 @@ public:
 		this->window->clear();
 		
 		this->board.printBoard(this->window);
+
+		this->pawn.printPawn(this->window);
 
 		this->window->display();
 	}
